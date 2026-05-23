@@ -1,1 +1,27 @@
+name: Duolingo Streak Keeper
 
+on:
+  schedule:
+    - cron: '0 12 * * *' # Запуск каждый день в 12:00 по Гринвичу
+  workflow_dispatch: # Позволяет запускать вручную кнопку
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install Dependencies
+        run: pip install requests
+
+      - name: Run DuoFarmer
+        env:
+          DUOLINGO_JWT: ${{ secrets.DUOLINGO_JWT }}
+        run: python duofarmer.py
+        
