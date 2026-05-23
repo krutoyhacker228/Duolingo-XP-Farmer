@@ -49,3 +49,4 @@ This method works on all major browsers (Chrome, Edge, Safari, Firefox) on both 
 ```bash
 python duofarmer.py
 
+.
